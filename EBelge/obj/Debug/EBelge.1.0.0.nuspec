@@ -1,0 +1,38 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2012/06/nuspec.xsd">
+  <metadata>
+    <id>EBelge</id>
+    <version>1.0.0</version>
+    <authors>EBelge</authors>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>Package Description</description>
+    <dependencies>
+      <group targetFramework=".NETCoreApp3.1">
+        <dependency id="Microsoft.EntityFrameworkCore" version="5.0.0" exclude="Build,Analyzers" />
+        <dependency id="Microsoft.EntityFrameworkCore.SqlServer" version="5.0.0" exclude="Build,Analyzers" />
+        <dependency id="System.ServiceModel.Duplex" version="4.4.4" exclude="Build,Analyzers" />
+        <dependency id="System.ServiceModel.Http" version="4.4.4" exclude="Build,Analyzers" />
+        <dependency id="System.ServiceModel.NetTcp" version="4.4.4" exclude="Build,Analyzers" />
+        <dependency id="System.ServiceModel.Security" version="4.4.4" exclude="Build,Analyzers" />
+        <dependency id="Telerik.UI.for.Wpf.NetCore.Xaml" version="2020.3.1020" exclude="Build,Analyzers" />
+      </group>
+    </dependencies>
+    <frameworkReferences>
+      <group targetFramework=".NETCoreApp3.1">
+        <frameworkReference name="Microsoft.WindowsDesktop.App.WPF" />
+      </group>
+    </frameworkReferences>
+    <contentFiles>
+      <files include="any/netcoreapp3.1/Connected Services/AuthenticationWS/ConnectedService.json" buildAction="Content" />
+      <files include="any/netcoreapp3.1/Images/splashImage.png" buildAction="Content" />
+    </contentFiles>
+  </metadata>
+  <files>
+    <file src="C:\Users\kuyuc\source\repos\EBelge\EBelge\bin\Debug\netcoreapp3.1\EBelge.runtimeconfig.json" target="lib\netcoreapp3.1\EBelge.runtimeconfig.json" />
+    <file src="C:\Users\kuyuc\source\repos\EBelge\EBelge\bin\Debug\netcoreapp3.1\EBelge.dll" target="lib\netcoreapp3.1\EBelge.dll" />
+    <file src="C:\Users\kuyuc\source\repos\EBelge\EBelge\Connected Services\AuthenticationWS\ConnectedService.json" target="content\Connected Services\AuthenticationWS\ConnectedService.json" />
+    <file src="C:\Users\kuyuc\source\repos\EBelge\EBelge\Connected Services\AuthenticationWS\ConnectedService.json" target="contentFiles\any\netcoreapp3.1\Connected Services\AuthenticationWS\ConnectedService.json" />
+    <file src="C:\Users\kuyuc\source\repos\EBelge\EBelge\Images\splashImage.png" target="content\Images\splashImage.png" />
+    <file src="C:\Users\kuyuc\source\repos\EBelge\EBelge\Images\splashImage.png" target="contentFiles\any\netcoreapp3.1\Images\splashImage.png" />
+  </files>
+</package>

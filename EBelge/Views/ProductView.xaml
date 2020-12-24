@@ -1,0 +1,53 @@
+﻿<UserControl x:Class="EBelge.Views.ProductView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:EBelge.Views" xmlns:telerik="http://schemas.telerik.com/2008/xaml/presentation" xmlns:viewmodels="clr-namespace:EBelge.ViewModels"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="800">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition></RowDefinition>
+            <RowDefinition Height="Auto"></RowDefinition>
+        </Grid.RowDefinitions>
+
+        <telerik:RadGridView Grid.Row="0" x:Name="radGridView" IsReadOnly="True" ItemsSource="{Binding EntityCollectionView}" AutoGenerateColumns="False"
+                             RowHeight="50" GroupRenderMode="Flat" SelectionMode="Multiple" RowIndicatorVisibility="Collapsed" CanUserFreezeColumns="False" 
+                             CanUserResizeColumns="False" SelectionUnit="FullRow">
+            <telerik:RadGridView.Columns>
+                <telerik:GridViewSelectColumn />
+                <telerik:GridViewToggleRowDetailsColumn />
+                <telerik:GridViewDataColumn Header="Ürün İsmi" DataMemberBinding="{Binding Product_Name}" />
+                <telerik:GridViewDataColumn Header="Model" DataMemberBinding="{Binding Model}" />
+                <telerik:GridViewDataColumn Header="Fiyat" DataMemberBinding="{Binding Price}" />
+                <telerik:GridViewDataColumn Header="Miktar" DataMemberBinding="{Binding Quantity}" />
+            </telerik:RadGridView.Columns>
+            <telerik:RadGridView.RowDetailsTemplate>
+                <DataTemplate>
+                    <telerik:RadTabControl Width="600" HorizontalAlignment="Left">
+
+                        <telerik:RadTabItem Header="Düzenle"
+											HorizontalContentAlignment="Stretch"
+											HorizontalAlignment="Left">
+                            <telerik:RadDataForm Grid.Row="1" CurrentItem="{Binding}" AutoGeneratingField="RadDataForm_AutoGeneratingField" EditEnded="RadDataForm_EditEnded" />
+                        </telerik:RadTabItem>
+                    </telerik:RadTabControl>
+                </DataTemplate>
+            </telerik:RadGridView.RowDetailsTemplate>
+        </telerik:RadGridView>
+        <Grid Grid.Row="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition></ColumnDefinition>
+                <ColumnDefinition Width="auto"></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+
+            <telerik:RadDataFilter Grid.Column="0"  Margin="5" Source="{Binding Items, ElementName=radGridView}" AutoGeneratingItemPropertyDefinition="RadDataFilter_AutoGeneratingItemPropertyDefinition" ></telerik:RadDataFilter>
+            
+            <WrapPanel Grid.Column="1" VerticalAlignment="Top" HorizontalAlignment="Right">
+                <telerik:RadButton Margin="5" Content="Satır Sil" Click="SatirSilButton_Click"></telerik:RadButton>
+                <telerik:RadButton Margin="5" Content="Satır Ekle" Command="{Binding InsertCommand}"></telerik:RadButton>
+            </WrapPanel>
+        </Grid>
+    </Grid>
+</UserControl>

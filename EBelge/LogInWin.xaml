@@ -1,0 +1,12 @@
+﻿<telerik:RadWindow xmlns:telerik="http://schemas.telerik.com/2008/xaml/presentation" x:Class="EBelge.LogInWin"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:EBelge" xmlns:views="clr-namespace:EBelge.Views"
+                    mc:Ignorable="d"
+        Header="Giriş Yap" Height="350" Width="450" WindowStartupLocation="CenterScreen" ResizeMode="NoResize">
+    <Grid >
+        <views:LogInView></views:LogInView>
+    </Grid>
+</telerik:RadWindow>

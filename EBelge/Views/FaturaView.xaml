@@ -1,0 +1,273 @@
+﻿<UserControl x:Class="EBelge.Views.FaturaView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:EBelge.Views" xmlns:telerik="http://schemas.telerik.com/2008/xaml/presentation" xmlns:viewmodels="clr-namespace:EBelge.ViewModels"
+             mc:Ignorable="d" 
+             d:DesignHeight="1100" d:DesignWidth="1100">
+    
+    <UserControl.Resources>
+        <telerik:InvertedBooleanConverter x:Key="InvertedBooleanConverter" />
+    </UserControl.Resources>
+    
+    <UserControl.DataContext>
+        <viewmodels:FaturaViewModel></viewmodels:FaturaViewModel>
+    </UserControl.DataContext>
+    
+    <ScrollViewer HorizontalScrollBarVisibility="Auto">
+        <telerik:RadBusyIndicator BusyContent="{Binding BusyContent}" IsBusy="{Binding IsBusy}" IsIndeterminate="True">
+            <Grid Margin="5">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="auto"></RowDefinition>
+                    <RowDefinition Height="auto"></RowDefinition>
+                    <RowDefinition Height="auto"></RowDefinition>
+                    <RowDefinition Height="auto"></RowDefinition>
+                    <RowDefinition Height="*" MinHeight="400"></RowDefinition>
+                    <RowDefinition Height="auto"></RowDefinition>
+                    <RowDefinition Height="auto"></RowDefinition>
+                </Grid.RowDefinitions>
+                <Grid Grid.Row="0" Margin="10">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition></ColumnDefinition>
+                        <ColumnDefinition></ColumnDefinition>
+                    </Grid.ColumnDefinitions>
+                    <StackPanel Grid.Column="0" Margin="3">
+                        <telerik:Label Content="Müşteri:" Padding="0" FontSize="14"/>
+                        <telerik:RadMultiColumnComboBox SelectedItem="{Binding SelectedCustomer}" DisplayMemberPath="PartyName" telerik:StyleManager.Theme="Fluent" Margin="3" Padding="3" NullText="Müşteri seç...">
+                            <telerik:RadMultiColumnComboBox.ItemsSourceProvider>
+                                <telerik:GridViewItemsSourceProvider ItemsSource="{Binding CustomerCollectionView}" AutoGenerateColumns="false" >
+                                    <telerik:GridViewItemsSourceProvider.Columns>
+                                        <telerik:GridViewDataColumn Header="VKN/TCKN " DataMemberBinding="{Binding VKN_TCKN }" />
+                                        <telerik:GridViewDataColumn Header="Ünvanı/Adı Soyadı" DataMemberBinding="{Binding PartyName}"  IsSearchable="False"/>
+                                        <telerik:GridViewDataColumn Header="Ülke" DataMemberBinding="{Binding Country}" />
+                                        <telerik:GridViewDataColumn Header="Şehir" DataMemberBinding="{Binding CityName}" />
+                                        <telerik:GridViewDataColumn Header="İlçe" DataMemberBinding="{Binding CitySubdivisionName}" />
+                                        <telerik:GridViewDataColumn Header="Adres" DataMemberBinding="{Binding StreetName}" />
+                                        <telerik:GridViewDataColumn Header="E Posta" DataMemberBinding="{Binding ElectronicMail}" />
+                                    </telerik:GridViewItemsSourceProvider.Columns>
+                                </telerik:GridViewItemsSourceProvider>
+                            </telerik:RadMultiColumnComboBox.ItemsSourceProvider>
+                        </telerik:RadMultiColumnComboBox>
+                    </StackPanel>
+                </Grid>
+                <Grid Grid.Row="1" Margin="10">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition></ColumnDefinition>
+                        <ColumnDefinition></ColumnDefinition>
+                        <ColumnDefinition></ColumnDefinition>
+                    </Grid.ColumnDefinitions>
+                    <StackPanel Grid.Column="0" Margin="3">
+                        <telerik:Label Content="Senaryo:" Padding="0" FontSize="14"/>
+                        <telerik:RadComboBox x:Name="senaryo" SelectedIndex="{Binding SenaryoSelectedIndex}" Margin="2" Width="auto" FontFamily="Segoe UI"
+                                         AllowMultipleSelection="False"
+                                         EmptyText="Birini seçin...">
+                            <telerik:RadComboBoxItem Content="TEMEL FATURA" />
+                            <telerik:RadComboBoxItem Content="TICARI FATURA" />
+                            <telerik:RadComboBoxItem Content="HKS" />
+                        </telerik:RadComboBox>
+                    </StackPanel>
+                    <StackPanel Grid.Column="1" Margin="3">
+                        <telerik:Label Content="Tip:" Padding="0" FontSize="14"/>
+                        <telerik:RadComboBox SelectedIndex="{Binding FaturaTipiSelectedIndex}" Margin="2" Width="auto" FontFamily="Segoe UI"
+                                         AllowMultipleSelection="False"
+                                         EmptyText="Birini seçin...">
+                            <telerik:RadComboBoxItem Content="SATIS" />
+                            <telerik:RadComboBoxItem Content="IADE" />
+                            <telerik:RadComboBoxItem Content="TEVKIFAT" />
+                            <telerik:RadComboBoxItem Content="ISTISNA" />
+                            <telerik:RadComboBoxItem Content="OZEL MATRAH" />
+                            <telerik:RadComboBoxItem Content="IHRAC KAYITLI" />
+                        </telerik:RadComboBox>
+                    </StackPanel>
+                    <StackPanel Grid.Column="2" Margin="3">
+                        <telerik:Label Content="Para Birimi:" Padding="0" FontSize="14"/>
+                        <telerik:RadComboBox SelectedIndex="{Binding ParaBirimiSelectedIndex}" Margin="2" Width="auto" FontFamily="Segoe UI"
+                                         AllowMultipleSelection="False"
+                                         EmptyText="Birini seçin...">
+                            <telerik:RadComboBoxItem Content="TRY" />
+                            <telerik:RadComboBoxItem Content="USD" />
+                            <telerik:RadComboBoxItem Content="EUR" />
+                        </telerik:RadComboBox>
+                    </StackPanel>
+                </Grid>
+                <Grid Grid.Row="2" Margin="10">
+                    <Grid.RowDefinitions>
+                        <RowDefinition></RowDefinition>
+                        <RowDefinition></RowDefinition>
+                    </Grid.RowDefinitions>
+                    <StackPanel Grid.Row="0" Margin="3">
+                        <telerik:Label Content="Dönem Bilgileri:" Padding="0" FontSize="14"/>
+                        <telerik:RadToggleSwitchButton ContentPosition="Both" CheckedContent="Açık" UncheckedContent="Kapalı" Margin="5" Cursor="Hand" IsChecked="{Binding DonemToggleChecked}" />
+                    </StackPanel>
+                    <Grid Grid.Row="1">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition></ColumnDefinition>
+                            <ColumnDefinition></ColumnDefinition>
+                        </Grid.ColumnDefinitions>
+                        <StackPanel Grid.Column="0" Margin="3" Visibility="{Binding DonemToggleVisibility}">
+                            <telerik:Label Content="Başlangıç:" Padding="0" FontSize="14"/>
+                            <telerik:RadDateTimePicker/>
+                        </StackPanel>
+                        <StackPanel Grid.Column="1" Margin="3" Visibility="{Binding DonemToggleVisibility}">
+                            <telerik:Label Content="Bitiş:" Padding="0" FontSize="14"/>
+                            <telerik:RadDateTimePicker />
+                        </StackPanel>
+                    </Grid>
+                </Grid>
+                <Grid Grid.Row="3" Margin="10">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition></ColumnDefinition>
+                        <ColumnDefinition></ColumnDefinition>
+                        <ColumnDefinition></ColumnDefinition>
+                    </Grid.ColumnDefinitions>
+                    <StackPanel Grid.Column="0" Margin="3">
+                        <telerik:Label Content="Sipariş Bilgileri:" Padding="0" FontSize="14"/>
+                        <telerik:RadToggleSwitchButton ContentPosition="Both" CheckedContent="Açık" UncheckedContent="Kapalı" Margin="5" IsChecked="{Binding SiparisToggleChecked}"/>
+                        <StackPanel Visibility="{Binding SiparisToggleVisibility}">
+                            <telerik:Label Content="Nu:" Padding="0" FontSize="14"/>
+                            <telerik:RadWatermarkTextBox HorizontalAlignment="Stretch" WatermarkContent="Numarayı Gir"/>
+                            <telerik:Label Content="Tarih:" Padding="0" FontSize="14"/>
+                            <telerik:RadDateTimePicker />
+                        </StackPanel>
+                    </StackPanel>
+                    <StackPanel Grid.Column="1" Margin="3">
+                        <telerik:Label Content="İrsaliye Bilgileri:" Padding="0" FontSize="14"/>
+                        <telerik:RadToggleSwitchButton ContentPosition="Both" CheckedContent="Açık" UncheckedContent="Kapalı" Margin="5" IsChecked="{Binding IrsaliyeToggleChecked}" />
+                        <StackPanel Visibility="{Binding IrsaliyeToggleVisibility}">
+                            <telerik:Label Content="Nu:" Padding="0" FontSize="14"/>
+                            <telerik:RadWatermarkTextBox HorizontalAlignment="Stretch" WatermarkContent="Numarayı Gir"/>
+                            <telerik:Label Content="Tarih:" Padding="0" FontSize="14"/>
+                            <telerik:RadDateTimePicker />
+                            <WrapPanel Margin="3">
+                                <telerik:RadButton Margin="3" Content="İrsaliye Satır Ekle" Padding="3"></telerik:RadButton>
+                                <telerik:RadButton Margin="3" Content="İrsaliye Satır Sil" Padding="3"></telerik:RadButton>
+                            </WrapPanel>
+                        </StackPanel>
+                    </StackPanel>
+                    <StackPanel Grid.Column="2" Margin="3">
+                        <telerik:Label Content="Referans Bilgileri:" Padding="0" FontSize="14"/>
+                        <telerik:RadToggleSwitchButton ContentPosition="Both" CheckedContent="Açık" UncheckedContent="Kapalı" Margin="5" IsChecked="{Binding ReferansToggleChecked}" />
+                        <StackPanel Visibility="{Binding ReferansToggleVisibility}">
+                            <telerik:Label Content="Nu:" Padding="0" FontSize="14"/>
+                            <telerik:RadWatermarkTextBox HorizontalAlignment="Stretch" WatermarkContent="Numarayı Gir"/>
+                            <telerik:Label Content="Tarih:" Padding="0" FontSize="14"/>
+                            <telerik:RadDateTimePicker />
+                        </StackPanel>
+                    </StackPanel>
+                </Grid>
+                <Grid Grid.Row="4" Margin="10">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="auto"></RowDefinition>
+                        <RowDefinition Height="*"></RowDefinition>
+                    </Grid.RowDefinitions>
+                    <Grid Grid.Row="0">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="auto"></ColumnDefinition>
+                            <ColumnDefinition Width="auto"></ColumnDefinition>
+                            <ColumnDefinition Width="*"></ColumnDefinition>
+                            <ColumnDefinition Width="auto"></ColumnDefinition>
+                        </Grid.ColumnDefinitions>
+                        <telerik:RadButton Grid.Column="0" Content="Doküman Eke" Margin="3" Padding="3"></telerik:RadButton>
+                        <telerik:RadComboBox Grid.Column="1" SelectedIndex="{Binding ParaBirimiSelectedIndex}" Margin="2" Width="auto" FontFamily="Segoe UI"
+                                         AllowMultipleSelection="False"
+                                         EmptyText="Birini seçin...">
+                            <telerik:RadComboBoxItem Content="İndirim" />
+                            <telerik:RadComboBoxItem Content="Artırım" />
+                            <telerik:RadComboBoxItem Content="GV Stopaj" />
+                            <telerik:RadComboBoxItem Content="KV Stopaj" />
+                        </telerik:RadComboBox>
+
+                        <telerik:RadMultiColumnComboBox Grid.Column="2" SelectedItem="{Binding SelectedProduct}" DisplayMemberPath="Model" telerik:StyleManager.Theme="Fluent" Margin="3" Padding="5" NullText="Ürün seç...">
+                            <telerik:RadMultiColumnComboBox.ItemsSourceProvider>
+                                <telerik:GridViewItemsSourceProvider ItemsSource="{Binding ProductCollectionView}" AutoGenerateColumns="false" >
+                                    <telerik:GridViewItemsSourceProvider.Columns>
+                                        <telerik:GridViewDataColumn Header="Ürün Adı" DataMemberBinding="{Binding Product_Name}" />
+                                        <telerik:GridViewDataColumn Header="Model" DataMemberBinding="{Binding Model}" />
+                                        <telerik:GridViewDataColumn Header="Fiyat" DataMemberBinding="{Binding Price}" />
+                                        <telerik:GridViewDataColumn Header="Miktar" DataMemberBinding="{Binding Quantity}" />
+                                    </telerik:GridViewItemsSourceProvider.Columns>
+                                </telerik:GridViewItemsSourceProvider>
+                            </telerik:RadMultiColumnComboBox.ItemsSourceProvider>
+                        </telerik:RadMultiColumnComboBox>
+
+                        <telerik:RadButton Grid.Column="3" Content="Ürün Eke" Margin="3" Padding="3" Command="{Binding urunEkleCommand}"></telerik:RadButton>
+                    </Grid>
+                    <Grid Grid.Row="1">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="2*"></ColumnDefinition>
+                            <ColumnDefinition Width="1*"></ColumnDefinition>
+                        </Grid.ColumnDefinitions>
+                        <Grid Grid.Column="0">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="2*"></RowDefinition>
+                                <RowDefinition Height="1*"></RowDefinition>
+                            </Grid.RowDefinitions>
+                            <telerik:RadGridView x:Name="UrunGridView" Grid.Row="0" ItemsSource="{Binding ProductLines}" telerik:StyleManager.Theme="Fluent" AutoGenerateColumns="False">
+                                <telerik:RadGridView.Columns>
+                                    <telerik:GridViewDataColumn Header="Mal/Hizmet Adı" DataMemberBinding="{Binding Mal_Hizmet_Ad}" />
+                                    <telerik:GridViewDataColumn Header="Birim Fiyat"  DataMemberBinding="{Binding Birim_Fiyat}" />
+                                    <telerik:GridViewDataColumn Header="Mal/Hizmet Tutar" DataMemberBinding="{Binding Mal_Hizmet_Tutar}" />
+                                    <telerik:GridViewDataColumn Header="Miktar" DataMemberBinding="{Binding Miktar}" />
+                                </telerik:RadGridView.Columns>
+                            </telerik:RadGridView>
+                            <telerik:RadGridView Grid.Row="1" telerik:StyleManager.Theme="Fluent"></telerik:RadGridView>
+                        </Grid>
+                        <telerik:RadPropertyGrid Grid.Column="1" Item="{Binding SelectedItem, ElementName=UrunGridView}" telerik:StyleManager.Theme="Fluent"/>
+                    </Grid>
+                </Grid>
+
+
+                <Grid Grid.Row="5" Margin="10">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition></ColumnDefinition>
+                        <ColumnDefinition Width="auto"></ColumnDefinition>
+                    </Grid.ColumnDefinitions>
+                    <Grid Grid.Column="0">
+                        <Grid.RowDefinitions>
+                            <RowDefinition></RowDefinition>
+                            <RowDefinition></RowDefinition>
+                            <RowDefinition></RowDefinition>
+                        </Grid.RowDefinitions>
+                        <Grid Grid.Row="0" Margin="3">
+                            <StackPanel Margin="3">
+                                <telerik:Label Content="Vergi Muafiyet:" Padding="0" FontSize="14"/>
+                                <telerik:RadToggleSwitchButton ContentPosition="Both" CheckedContent="Açık" UncheckedContent="Kapalı"  Cursor="Hand" IsChecked="{Binding VergiToggleChecked}" Margin="5"/>
+                                <StackPanel Visibility="{Binding VergiToggleVisibility}">
+                                    <telerik:Label Content="Vergi Muafiyet Sebebi:" Padding="0" FontSize="14"/>
+                                    <telerik:RadWatermarkTextBox HorizontalAlignment="Stretch" WatermarkContent="Vergi Muafiyet Sebebini Gir"/>
+                                </StackPanel>
+                            </StackPanel>
+                        </Grid>
+                        <Grid Grid.Row="1" Margin="3">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="auto"></RowDefinition>
+                                <RowDefinition></RowDefinition>
+                            </Grid.RowDefinitions>
+                            <StackPanel Margin="3" Grid.Row="0">
+                                <telerik:Label Content="Banka Bilgileri:" Padding="0" FontSize="14"/>
+                                <WrapPanel>
+                                    <telerik:RadToggleSwitchButton ContentPosition="Both" CheckedContent="Açık" UncheckedContent="Kapalı" IsChecked="{Binding BankaToggleChecked}" Margin="5" />
+                                    <telerik:RadButton Content="Banka Bilgisi Ekle" Visibility="{Binding BankaToggleVisibility}"></telerik:RadButton>
+                                </WrapPanel>
+                            </StackPanel>
+                            <telerik:RadGridView Grid.Row="1" Visibility="{Binding BankaToggleVisibility}"></telerik:RadGridView>
+                        </Grid>
+                        <Grid Grid.Row="2" Margin="3">
+                            <StackPanel Margin="3">
+                                <telerik:Label Content="Not Bilgisi:" Padding="0" FontSize="14"/>
+                                <telerik:RadToggleSwitchButton ContentPosition="Both" CheckedContent="Açık" UncheckedContent="Kapalı" IsChecked="{Binding NotToggleChecked}" Margin="5"/>
+                                <telerik:RadWatermarkTextBox HorizontalAlignment="Stretch" WatermarkContent="Notu Gir" Visibility="{Binding NotToggleVisibility}"/>
+                            </StackPanel>
+                        </Grid>
+                    </Grid>
+                </Grid>
+                <Grid Grid.Row="6">
+                    <telerik:RadToggleButton Content="Fatura Oluştur"
+				IsChecked="{Binding IsBusy, Mode=TwoWay}" IsThreeState="False"
+				IsEnabled="{Binding IsBusy, Converter={StaticResource InvertedBooleanConverter}}" />
+                </Grid>
+            </Grid>
+        </telerik:RadBusyIndicator>
+    </ScrollViewer>
+</UserControl>

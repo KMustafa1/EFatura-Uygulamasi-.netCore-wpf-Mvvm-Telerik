@@ -1,0 +1,109 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.WindowsDesktop">
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+    <UseWPF>true</UseWPF>
+    <RootNamespace>EBelge</RootNamespace>
+    <EnableDefaultItems>False</EnableDefaultItems>
+    <ApplicationIcon>invoice.ico</ApplicationIcon>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="5.0.0" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="5.0.0" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="5.0.0">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+    <PackageReference Include="System.ServiceModel.Duplex" Version="4.4.*" />
+    <PackageReference Include="System.ServiceModel.Http" Version="4.4.*" />
+    <PackageReference Include="System.ServiceModel.NetTcp" Version="4.4.*" />
+    <PackageReference Include="System.ServiceModel.Security" Version="4.4.*" />
+    <PackageReference Include="Telerik.UI.for.Wpf.NetCore.Xaml" Version="2020.3.1020" />
+  </ItemGroup>
+  
+  <ItemGroup>
+  <ApplicationDefinition Include="App.xaml">
+    <Generator>MSBuild:Compile</Generator>
+    <SubType>Designer</SubType>
+  </ApplicationDefinition>
+  <Page Include="Components\BindablePasswordBox.xaml">
+    <Generator>MSBuild:Compile</Generator>
+  </Page>
+  <Page Include="LogInWin.xaml">
+    <Generator>MSBuild:Compile</Generator>
+  </Page>
+  <Page Include="MainWindow.xaml">
+    <Generator>MSBuild:Compile</Generator>
+    <SubType>Designer</SubType>
+  </Page>
+  <Page Include="Views\CheckUserView.xaml">
+    <Generator>MSBuild:Compile</Generator>
+  </Page>
+  <Page Include="Views\EDocView.xaml">
+    <Generator>MSBuild:Compile</Generator>
+  </Page>
+  <Page Include="Views\FaturaView.xaml">
+    <Generator>MSBuild:Compile</Generator>
+  </Page>
+  <Page Include="Views\LogInView.xaml">
+    <Generator>MSBuild:Compile</Generator>
+  </Page>
+  <Page Include="Views\PdfViewerView.xaml">
+    <Generator>MSBuild:Compile</Generator>
+  </Page>
+  <Page Include="Views\ProductView.xaml">
+    <Generator>MSBuild:Compile</Generator>
+  </Page>
+  <Page Include="Views\ProfilView.xaml">
+    <Generator>MSBuild:Compile</Generator>
+  </Page>
+  <Page Include="XsltEditorWin.xaml">
+    <Generator>MSBuild:Compile</Generator>
+  </Page>
+  <Compile Include="App.xaml.cs">
+    <DependentUpon>App.xaml</DependentUpon>
+    <SubType>Code</SubType>
+  </Compile>
+  <Compile Include="Classes\UBLInvoice.cs" />
+  <Compile Include="Components\BindablePasswordBox.xaml.cs" />
+  <Compile Include="Connected Services\AuthenticationWS\Reference.cs" />
+  <Compile Include="Connected Services\BillingWS\Reference.cs" />
+  <Compile Include="Connected Services\EInvoiceWS\Reference.cs" />
+  <Compile Include="LogInWin.xaml.cs" />
+  <Compile Include="MainWindow.xaml.cs">
+    <DependentUpon>MainWindow.xaml</DependentUpon>
+    <SubType>Code</SubType>
+  </Compile>
+  <Compile Include="Models\Taxpayer.cs" />
+  <Compile Include="Models\NavigationItemModel.cs" />
+  <Compile Include="MyContext.cs" />
+  <Compile Include="ViewModels\CheckUserViewModel.cs" />
+  <Compile Include="ViewModels\EDocViewModel.cs" />
+  <Compile Include="ViewModels\FaturaViewModel.cs" />
+  <Compile Include="ViewModels\LogInViewModel.cs" />
+  <Compile Include="ViewModels\MainViewModel.cs" />
+  <Compile Include="ViewModels\ProductViewModel.cs" />
+  <Compile Include="ViewModels\ProfilViewModel.cs" />
+  <Compile Include="Views\CheckUserView.xaml.cs" />
+  <Compile Include="Views\EDocView.xaml.cs" />
+  <Compile Include="Views\FaturaView.xaml.cs" />
+  <Compile Include="Views\LogInView.xaml.cs" />
+  <Compile Include="Views\PdfViewerView.xaml.cs" />
+  <Compile Include="Views\ProductView.xaml.cs" />
+  <Compile Include="Views\ProfilView.xaml.cs" />
+  <Compile Include="XsltEditorWin.xaml.cs" />
+</ItemGroup>
+  
+  <ItemGroup>
+    <Content Include="Connected Services\AuthenticationWS\ConnectedService.json" />
+    <Content Include="Connected Services\BillingWS\ConnectedService.json" />
+    <Content Include="Connected Services\EInvoiceWS\ConnectedService.json" />
+    <Content Include="invoice.ico" />
+  </ItemGroup>
+  
+  <ItemGroup>
+    <WCFMetadata Include="Connected Services" />
+  </ItemGroup>
+
+</Project>

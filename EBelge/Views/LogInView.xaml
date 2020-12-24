@@ -1,0 +1,31 @@
+﻿<UserControl x:Class="EBelge.Views.LogInView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:EBelge.Views" xmlns:telerik="http://schemas.telerik.com/2008/xaml/presentation" xmlns:viewmodels="clr-namespace:EBelge.ViewModels" xmlns:components="clr-namespace:EBelge.Components"
+             mc:Ignorable="d" 
+             d:DesignHeight="300" d:DesignWidth="450">
+    
+    <UserControl.Resources>
+        <telerik:InvertedBooleanConverter x:Key="InvertedBooleanConverter" />
+    </UserControl.Resources>
+    <UserControl.DataContext>
+        <viewmodels:LogInViewModel></viewmodels:LogInViewModel>
+    </UserControl.DataContext>
+
+    <telerik:RadBusyIndicator IsBusy="{Binding IsBusy}" IsIndeterminate="True" >
+        <Grid>
+            <StackPanel Margin="10">
+                <telerik:Label Content="Kullanıcı Adı:" Padding="0" FontSize="14"/>
+                <telerik:RadWatermarkTextBox Text="{Binding UserName}" HorizontalAlignment="Stretch" WatermarkContent="Kullanıcı Adınız" Margin="0 10 0 0"/>
+                <telerik:Label Content="Parola:" Padding="0" Margin="0 24 0 0" FontSize="14"/>
+                <components:BindablePasswordBox Password="{Binding Password}" HorizontalAlignment="Stretch" Margin="0 10 0 0"/>
+                <telerik:RadToggleButton HorizontalAlignment="Center" Content="Giriş Yap" Margin="0 10 0 0" FontSize="14" Padding="20 10"
+				    IsChecked="{Binding IsBusy, Mode=TwoWay}" IsThreeState="False"
+				    IsEnabled="{Binding IsBusy, Converter={StaticResource InvertedBooleanConverter}}" />
+                <telerik:RadHyperlinkButton Content="Bir hesaba mı ihtiyacınız var? Kayıt olun." NavigateUri="https://www.telerik.com/login/v2/telerik#register" IsVisited="False" HorizontalContentAlignment="Center" Margin="0 12" FontSize="16"/>
+            </StackPanel>
+        </Grid>
+    </telerik:RadBusyIndicator>
+</UserControl>
