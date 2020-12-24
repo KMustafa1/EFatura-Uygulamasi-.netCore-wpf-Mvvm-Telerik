@@ -12,9 +12,11 @@ komutlarını çalıştırın.
 Entegretör olarak izibiz demo hesabı kullanılmıştır. https://dev.izibiz.com.tr/
 faturaları oluştururken bu biligleri göz önünde bulundurun yoksa şematron kontrölünden geçmez
 
- Gönderici VKN	     Gönderici Etiket	                Alıcı VKN	      Alıcı Etiket
-4840847211	      urn:mail:defaultgb@izibiz.com.tr	  4840847211    	urn:mail:defaultpk@izibiz.com.tr
-
+ Gönderici VKN : 4840847211		     
+ Gönderici Etiket	: urn:mail:defaultgb@izibiz.com.tr                
+ Alıcı VKN	: 4840847211      
+ Alıcı Etiket : urn:mail:defaultpk@izibiz.com.tr
+      	      	
 entegratöre iletilen faturaların durumunu görmek için
 https://portaltest.izibiz.com.tr/auth/login adresine girebilirsiniz 
 
