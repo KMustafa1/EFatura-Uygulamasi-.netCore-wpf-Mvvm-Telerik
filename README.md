@@ -10,7 +10,9 @@ ve
 komutlarını çalıştırın.
 
 Entegretör olarak izibiz demo hesabı kullanılmıştır. https://dev.izibiz.com.tr/
-faturaları oluştururken bu biligleri göz önünde bulundurun yoksa şematron kontrölünden geçmez
+
+
+Faturaları oluştururken aşağıdaki biligleri göz önünde bulundurun yoksa fatura şematron kontrölünden geçmez
 
  Gönderici VKN : 4840847211		     
  Gönderici Etiket	: urn:mail:defaultgb@izibiz.com.tr                
