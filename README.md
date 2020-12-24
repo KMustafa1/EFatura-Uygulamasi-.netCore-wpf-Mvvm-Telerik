@@ -20,5 +20,5 @@ Faturaları oluştururken aşağıdaki biligleri göz önünde bulundurun yoksa 
  Alıcı Etiket : urn:mail:defaultpk@izibiz.com.tr
       	      	
 entegratöre iletilen faturaların durumunu görmek için
-https://portaltest.izibiz.com.tr/auth/login adresine girebilirsiniz 
+https://portaltest.izibiz.com.tr/auth/login adresini ziyaret edebilirsiniz 
 
